@@ -6,13 +6,12 @@ using MathAnglesU;
 [System.Serializable]
 public class PlayerWalk : _PlayerState
 {
-    [SerializeField] private float _speed;
     private Vector3 _walkEulerAngles;
     private Vector3 _walkDirectional;
 
     public override void StateFUpdate()
     {
-        _playerController.transform.Translate(_walkDirectional * _speed * Time.fixedDeltaTime, Space.World);
+        _playerController.transform.Translate(_walkDirectional * _playerController.playerStats.walkSpeed * Time.fixedDeltaTime, Space.World);
         _playerController.transform.eulerAngles = _walkEulerAngles;
     }
 
@@ -20,7 +19,7 @@ public class PlayerWalk : _PlayerState
     {
         float angle = MathfAngles.FindAngle(point1, point2);
 
-        Vector2 directional = MathfAngles.FindDirectional(angle, _speed);
+        Vector2 directional = MathfAngles.FindDirectional(angle, _playerController.playerStats.walkSpeed);
 
         _walkEulerAngles = new Vector3(0, -angle, 0);
         _walkDirectional = new Vector3(directional.x, 0, directional.y);

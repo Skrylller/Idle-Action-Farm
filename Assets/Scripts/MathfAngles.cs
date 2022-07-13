@@ -18,7 +18,7 @@ namespace MathAnglesU
                 return 0;
 
             float angle = -Mathf.Atan((point1.x - point2.x) / (point1.y - point2.y)) * Mathf.Rad2Deg;
-            if ((point1.y - point2.y) <= 0)
+            if ((point1.y - point2.y) < 0)
                 angle -= 180;
 
             return angle;

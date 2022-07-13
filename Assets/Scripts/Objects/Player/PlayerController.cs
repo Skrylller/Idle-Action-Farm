@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+
+    [SerializeField] private PlayerStats _playerStats;
     [SerializeField] private PlayerIdle _idleState = new PlayerIdle();
     [SerializeField] private PlayerWalk _walkState = new PlayerWalk();
     [SerializeField] private PlayerMow _mowState = new PlayerMow();
 
+    public PlayerStats playerStats { get { return _playerStats; } }
     public PlayerIdle idleState { get { return _idleState; } }
     public PlayerWalk walkState { get { return _walkState; } }
     public PlayerMow mowState { get { return _mowState; } }
-
 
     private _PlayerState _state;
 
@@ -19,7 +21,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        SetState(_idleState);
+        SetState(idleState);
+        SingletoneComponentsManager.main.inventory.Init(_playerStats);
+        SingletoneComponentsManager.main.cultureStackDetector.Init(_playerStats);
     }
 
     private void Update()

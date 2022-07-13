@@ -15,7 +15,7 @@ public class InputSystem : MonoBehaviour
     {
         _camera = Camera.main;
         _player = SingletoneComponentsManager.main.player;
-        _joystick = SingletoneComponentsManager.main.uIController.joystick;
+        _joystick = SingletoneComponentsManager.main.UIController.joystick;
     }
 
     private void Update()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WheatDetector : MonoBehaviour
+public class CultureDetector : MonoBehaviour
 {
     private PlayerController _player;
 
@@ -13,7 +13,7 @@ public class WheatDetector : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Wheat")
+        if(other.tag == "Culture")
         {
             _player.SetState(_player.mowState);
         }
