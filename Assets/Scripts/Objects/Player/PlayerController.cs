@@ -18,12 +18,26 @@ public class PlayerController : MonoBehaviour
     private _PlayerState _state;
 
     [SerializeField] private Animator _animator;
+    private InputSystem _input;
 
     private void Start()
     {
         SetState(idleState);
         SingletoneComponentsManager.main.inventory.Init(_playerStats);
         SingletoneComponentsManager.main.cultureStackDetector.Init(_playerStats);
+    }
+
+    private void OnEnable()
+    {
+        _input = SingletoneComponentsManager.main.input;
+        _input.InputGetTouch += SetWalk;
+        _input.InputGetTouchUp += SetIdle;
+    }
+
+    private void OnDisable()
+    {
+        _input.InputGetTouch -= SetWalk;
+        _input.InputGetTouchUp -= SetIdle;
     }
 
     private void Update()
@@ -36,6 +50,16 @@ public class PlayerController : MonoBehaviour
         _state.StateFUpdate();
     }
 
+    private void SetWalk()
+    {
+        SetState(walkState);
+        walkState.SetDirectional(_input.currentTouchPosition, _input.startTouchPosition);
+    }
+    private void SetIdle()
+    {
+        SetState(idleState);
+        walkState.SetDirectional(new Vector3(0,0,0));
+    }
 
     public void SetState(_PlayerState state, bool changeAnyway = false)
     {

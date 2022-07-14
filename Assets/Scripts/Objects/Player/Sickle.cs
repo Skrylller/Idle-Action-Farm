@@ -17,7 +17,7 @@ public class Sickle : MonoBehaviour
         {
             Culture culture = other.GetComponent<Culture>();
             culture.ChangeStateCulture(false);
-            _objectPulls.ActivateCulture(other.transform.position, culture.cultureObj);
+            _objectPulls.ActivateCultureStack(other.transform.position, culture.cultureObj);
         }
     }
 }

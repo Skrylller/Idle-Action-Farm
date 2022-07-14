@@ -8,12 +8,12 @@ public class CultureDetector : MonoBehaviour
 
     private void Start()
     {
-        _player = SingletoneComponentsManager.main.player;
+        _player = GetComponentInParent<PlayerController>();
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if(other.tag == "Culture")
+        if(_player != null && other.tag == "Culture")
         {
             _player.SetState(_player.mowState);
         }

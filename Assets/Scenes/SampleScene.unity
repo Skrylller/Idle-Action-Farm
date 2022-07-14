@@ -169,7 +169,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 2.6075387, y: 1}
+    m_SensorSize: {x: 2.609756, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -185,14 +185,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 17843542}
-  m_LocalRotation: {x: 0.6339889, y: -0.000000097384884, z: 0.000000079836504, w: 0.7733422}
+  m_LocalRotation: {x: 0.6339889, y: -0.00000009738491, z: 0.00000007983653, w: 0.7733422}
   m_LocalPosition: {x: -7.674, y: 9.651, z: -17.256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1549038380}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
 --- !u!1001 &43249733
 PrefabInstance:
@@ -1623,7 +1623,7 @@ RectTransform:
   m_Children:
   - {fileID: 1119173131}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1642,7 +1642,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65890a32e6bd05b4c8c83e6793dbc2e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _joystick: {fileID: 92204338}
   _inventoryText: {fileID: 1444923075}
   _moneyText: {fileID: 750721142}
 --- !u!1001 &403072053
@@ -2288,7 +2287,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &595015632
 MonoBehaviour:
@@ -3861,13 +3860,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.6339889, y: -0.000000097384884, z: 0.000000079836504, w: 0.7733422}
+  m_LocalRotation: {x: 0.6339889, y: -0.00000009738491, z: 0.00000007983653, w: 0.7733422}
   m_LocalPosition: {x: -7.674, y: 9.651, z: -17.256}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
@@ -4070,7 +4069,7 @@ Transform:
   m_Children:
   - {fileID: 1590486454}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &991403156
 MonoBehaviour:
@@ -4084,12 +4083,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2619d1b6981a1664997306a80eb4ecfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1123278636}
-  _UIController: {fileID: 385045285}
   _objectPulls: {fileID: 1590486453}
   _cultureStackDetector: {fileID: 1252051386}
-  _inventory:
-    _backBag: {fileID: 2109114767}
+  _input: {fileID: 595015632}
 --- !u!1001 &996959284
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6822,7 +6818,7 @@ Transform:
   - {fileID: 645493990}
   - {fileID: 2099644144}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1843857796
 PrefabInstance:

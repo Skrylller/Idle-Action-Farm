@@ -13,7 +13,7 @@ public class ObjectPulls : MonoBehaviour
         _stackDetector = SingletoneComponentsManager.main.cultureStackDetector;
     }
 
-    public void ActivateCulture(Vector3 position, CultureObject cultureObject)
+    public void ActivateCultureStack(Vector3 position, CultureObject cultureObject)
     {
         CultureStack culture = cultures.ActivateObject(position, new Vector3()).GetComponent<CultureStack>();
         culture.Init(cultureObject);

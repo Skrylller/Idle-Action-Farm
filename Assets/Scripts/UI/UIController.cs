@@ -5,15 +5,25 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    [SerializeField] private Joystick _joystick;
-    public Joystick joystick { get { return _joystick; }}
+    private Inventory _inventory;
 
     [SerializeField] private TMP_Text _inventoryText;
     [SerializeField] private TMP_Text _moneyText;
 
-    public void InventoryTextUpdate(string text)
+    private void OnEnable()
     {
-        _inventoryText.text = text;
+        _inventory = SingletoneComponentsManager.main.inventory;
+        _inventory.UpdateInventory += InventoryTextUpdate;
+    }
+
+    private void OnDisable()
+    {
+        _inventory.UpdateInventory -= InventoryTextUpdate;
+    }
+
+    public void InventoryTextUpdate()
+    {
+        _inventoryText.text = $"{_inventory.cultureCount}/{_inventory.playerStats.inventorySize}";
 
     }
 }

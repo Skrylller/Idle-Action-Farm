@@ -10,21 +10,38 @@ public class Joystick : MonoBehaviour
 
     [SerializeField] private float _maxRadius;
 
+    private InputSystem _input;
+
     private void Start()
     {
         DeactiveJoystick();
     }
 
-    public void SetJoystickPosition(Vector2 startPos, Vector2 handPos)
+    private void OnEnable()
+    {
+        _input = SingletoneComponentsManager.main.input;
+        _input.InputGetTouch += SetJoystickPosition;
+        _input.InputGetTouchUp += DeactiveJoystick;
+    }
+
+    private void OnDisable()
+    {
+        _input.InputGetTouch -= SetJoystickPosition;
+        _input.InputGetTouchUp -= DeactiveJoystick;
+    }
+
+    public void SetJoystickPosition()
     {
         StickBack.gameObject.SetActive(true);
         StickHand.gameObject.SetActive(true);
 
-        StickBack.position = startPos;
+        StickBack.position = _input.startTouchPosition;
 
-        if(Vector2.Distance(startPos, handPos) > _maxRadius)
+        Vector2 handPos = _input.currentTouchPosition;
+
+        if (Vector2.Distance(_input.startTouchPosition, _input.currentTouchPosition) > _maxRadius)
         {
-            handPos = startPos + MathfAngles.FindDirectional(MathfAngles.FindAngle(handPos, startPos), _maxRadius);
+            handPos = (Vector2)_input.startTouchPosition + MathfAngles.FindDirectional(MathfAngles.FindAngle(_input.currentTouchPosition, _input.startTouchPosition), _maxRadius);
         }
 
         StickHand.position = handPos;

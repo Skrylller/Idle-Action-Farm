@@ -1,21 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class InputSystem : MonoBehaviour
 {
-    private Camera _camera;
+    public event Action InputGetTouch;
+    public event Action InputGetTouchUp;
 
-    private Vector3 startTouchPosition;
+    public Vector3 startTouchPosition { get; private set; }
+    public Vector3 currentTouchPosition { get; private set; }
 
-    private PlayerController _player;
-    private Joystick _joystick;
+private Camera _camera;
+
 
     private void Start()
     {
         _camera = Camera.main;
-        _player = SingletoneComponentsManager.main.player;
-        _joystick = SingletoneComponentsManager.main.UIController.joystick;
     }
 
     private void Update()
@@ -28,20 +29,16 @@ public class InputSystem : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             startTouchPosition = Input.mousePosition;
-            _player.SetState(_player.walkState);
         }
         else if (Input.GetKey(KeyCode.Mouse0))
         {
-            _player.walkState.SetDirectional(Input.mousePosition, startTouchPosition);
-            _joystick.SetJoystickPosition(startTouchPosition, Input.mousePosition);
-            _player.SetState(_player.walkState);
+            currentTouchPosition = Input.mousePosition;
+            InputGetTouch?.Invoke();
 
         }
         else if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            _player.walkState.SetDirectional(new Vector3(0,0,0));
-            _player.SetState(_player.idleState);
-            _joystick.DeactiveJoystick();
+            InputGetTouchUp?.Invoke();
         }
     }
 }
