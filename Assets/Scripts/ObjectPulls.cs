@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class ObjectPulls : MonoBehaviour
 {
-    private CultureStackDetector _stackDetector;
-
     [SerializeField] private Pull cultures;
+    [SerializeField] private Pull moneys;
+
+    private CultureStackDetector _stackDetector;
+    private Camera _camera;
 
     private void Start()
     {
+        _camera = Camera.main;
         _stackDetector = SingletoneComponentsManager.main.cultureStackDetector;
+    }
+
+    public void ActivateMoney(Vector3 position, int cost)
+    {
+        moneys.ActivateObject(_camera.WorldToScreenPoint(position), new Vector3()).GetComponent<MoneyEffect>().Init(cost);
     }
 
     public void ActivateCultureStack(Vector3 position, CultureObject cultureObject)
@@ -29,6 +37,8 @@ public class Pull
 
     private List<GameObject> _objects = new List<GameObject>();
 
+    [SerializeField] private Transform parrent;
+
     public GameObject FindFreeObject()
     {
         for (int i = 0; i < _objects.Count; i++)
@@ -37,7 +47,7 @@ public class Pull
                 return _objects[i];
         }
 
-        _objects.Add(GameObject.Instantiate(_objectPrefab));
+        _objects.Add(GameObject.Instantiate(_objectPrefab, parrent));
         _objects[_objects.Count - 1].SetActive(false);
 
         return _objects[_objects.Count - 1];

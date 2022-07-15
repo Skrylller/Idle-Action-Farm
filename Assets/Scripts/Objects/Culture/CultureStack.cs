@@ -23,6 +23,7 @@ public class CultureStack : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+
     public void MagneticToTarget(Vector3 target)
     {
         transform.DOMove(target, _speedMagnetic, false);

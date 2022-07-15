@@ -10,20 +10,23 @@ public class UIController : MonoBehaviour
     [SerializeField] private TMP_Text _inventoryText;
     [SerializeField] private TMP_Text _moneyText;
 
+    [SerializeField] private Transform _moneyTarget;
+    public Transform moneyTarget { get { return _moneyTarget; } }
+
     private void OnEnable()
     {
         _inventory = SingletoneComponentsManager.main.inventory;
-        _inventory.UpdateInventory += InventoryTextUpdate;
+        _inventory.UpdateInventory += TextUpdate;
     }
 
     private void OnDisable()
     {
-        _inventory.UpdateInventory -= InventoryTextUpdate;
+        _inventory.UpdateInventory -= TextUpdate;
     }
 
-    public void InventoryTextUpdate()
+    public void TextUpdate()
     {
-        _inventoryText.text = $"{_inventory.cultureCount}/{_inventory.playerStats.inventorySize}";
-
+        _inventoryText.text = $"{_inventory.cultureCount}/{_inventory.inventorySize}";
+        _moneyText.text = $"{_inventory.money}";
     }
 }

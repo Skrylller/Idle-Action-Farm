@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _walkSpeed: 1.5
   _magneticDistance: 1
-  _takeDistance: 0.1
-  _inventorySize: 10
+  _takeDistance: 0.2
+  _inventorySize: 50

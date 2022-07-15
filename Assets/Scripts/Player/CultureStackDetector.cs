@@ -7,7 +7,6 @@ public class CultureStackDetector : MonoBehaviour
     [SerializeField] private List<CultureStack> _cultureStackComponents = new List<CultureStack>();
 
     private PlayerStats _playerStats;
-
     private Inventory _inventory;
 
     private void Start()
