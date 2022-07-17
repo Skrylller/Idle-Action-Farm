@@ -10,11 +10,13 @@ public class SingletoneComponentsManager : MonoBehaviour
     [SerializeField] private ObjectPulls _objectPulls;
     [SerializeField] private CultureStackDetector _cultureStackDetector;
     [SerializeField] private InputSystem _input;
+    [SerializeField] private PlayerController _player;
     [SerializeField] private Inventory _inventory = new Inventory();
     public UIController UIController { get { return _UIController; } }
     public ObjectPulls objectPulls { get { return _objectPulls; } }
     public CultureStackDetector cultureStackDetector { get { return _cultureStackDetector; } }
     public InputSystem input { get { return _input; } }
+    public PlayerController player { get { return _player; } }
     public Inventory inventory { get { return _inventory; } }
 
     private void Awake()

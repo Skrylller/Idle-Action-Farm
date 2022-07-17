@@ -7,10 +7,13 @@ public class CultureStack : MonoBehaviour
 {
     [SerializeField] private Vector3 _rotateDirectional;
     [SerializeField] private float _speedMagnetic;
+
+    private PlayerController _playerController;
     public CultureObject cultureObject { get; private set; }
 
     private void OnEnable()
     {
+        _playerController = SingletoneComponentsManager.main.player;
         RotateAnimation();
     }
 
@@ -32,7 +35,8 @@ public class CultureStack : MonoBehaviour
     private void RotateAnimation()
     {
         var animation = DOTween.Sequence();
-        animation.Append(transform.DORotate(transform.eulerAngles + _rotateDirectional * Time.deltaTime, 0, RotateMode.Fast));
+        Vector3 animRotation = _playerController.state == _playerController.walkState ? _rotateDirectional * Time.deltaTime : new Vector3() * Time.deltaTime;
+        animation.Append(transform.DORotate(transform.eulerAngles + animRotation, 0, RotateMode.Fast));
         animation.OnComplete(RotateAnimation);
     }
 

@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     public PlayerWalk walkState { get { return _walkState; } }
     public PlayerMow mowState { get { return _mowState; } }
 
-    private _PlayerState _state;
+    public _PlayerState state { get; private set; }
 
     [SerializeField] private Animator _animator;
     private InputSystem _input;
@@ -42,21 +42,21 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        _state.StateUpdate();
+        state.StateUpdate();
     }
 
     private void FixedUpdate()
     {
-        _state.StateFUpdate();
+        state.StateFUpdate();
     }
 
     public void SetState(_PlayerState state, bool changeAnyway = false)
     {
-        if ((_state == state || _state == mowState) && !changeAnyway)
+        if ((this.state == state || this.state == mowState) && !changeAnyway)
             return;
 
-        _state = state;
-        _state.InitState(this);
+        this.state = state;
+        this.state.InitState(this);
         _animator.SetInteger(_animator.parameters[0].name, state.animationId);
     }
 
