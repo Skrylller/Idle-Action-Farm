@@ -9,7 +9,7 @@ public class CultureStack : MonoBehaviour
     [SerializeField] private float _speedMagnetic;
     public CultureObject cultureObject { get; private set; }
 
-    private void Update()
+    private void OnEnable()
     {
         RotateAnimation();
     }
@@ -31,7 +31,9 @@ public class CultureStack : MonoBehaviour
 
     private void RotateAnimation()
     {
-        transform.DORotate(transform.eulerAngles + _rotateDirectional * Time.deltaTime, 0, RotateMode.Fast);
+        var animation = DOTween.Sequence();
+        animation.Append(transform.DORotate(transform.eulerAngles + _rotateDirectional * Time.deltaTime, 0, RotateMode.Fast));
+        animation.OnComplete(RotateAnimation);
     }
 
 }

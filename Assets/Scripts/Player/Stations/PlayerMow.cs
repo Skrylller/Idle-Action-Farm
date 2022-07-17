@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMow : _PlayerState
 {
     [SerializeField] private Sickle _sickle;
-    [SerializeField] private AnimationClip animClip;
+    [SerializeField] private AnimationClip _animClip;
 
     public override void InitState(PlayerController playerController)
     {
@@ -18,7 +18,8 @@ public class PlayerMow : _PlayerState
 
     private IEnumerator AnimationTimer()
     {
-        yield return new WaitForSeconds(animClip.length);
+        yield return new WaitForSeconds(_animClip.length);
+        yield return new WaitUntil(() => !_playerController.CheckAnimationClip(_animClip));
 
         _sickle.gameObject.SetActive(false);
         _playerController.SetState(_playerController.idleState, changeAnyway: true);

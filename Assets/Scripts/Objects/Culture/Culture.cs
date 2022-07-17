@@ -6,6 +6,7 @@ using UnityEngine;
 public class Culture : MonoBehaviour
 {
     [SerializeField] private CultureObject _cultureObj;
+    [SerializeField] private ParticleSystem _particles;
     public CultureObject cultureObj { get { return _cultureObj; } }
 
     [SerializeField] private GameObject HasGrownModel;
@@ -35,6 +36,7 @@ public class Culture : MonoBehaviour
         _collider.enabled = _isHasGrown;
         HasGrownModel.SetActive(_isHasGrown);
         DestroyModel.SetActive(!_isHasGrown);
+        _particles.gameObject.SetActive(!_isHasGrown);
     }
 
     private IEnumerator HasGrownTimer()

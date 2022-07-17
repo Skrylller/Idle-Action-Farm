@@ -50,17 +50,6 @@ public class PlayerController : MonoBehaviour
         _state.StateFUpdate();
     }
 
-    private void SetWalk()
-    {
-        SetState(walkState);
-        walkState.SetDirectional(_input.currentTouchPosition, _input.startTouchPosition);
-    }
-    private void SetIdle()
-    {
-        SetState(idleState);
-        walkState.SetDirectional(new Vector3(0,0,0));
-    }
-
     public void SetState(_PlayerState state, bool changeAnyway = false)
     {
         if ((_state == state || _state == mowState) && !changeAnyway)
@@ -71,9 +60,25 @@ public class PlayerController : MonoBehaviour
         _animator.SetInteger(_animator.parameters[0].name, state.animationId);
     }
 
+    public bool CheckAnimationClip(AnimationClip clip)
+    {
+        return _animator.GetCurrentAnimatorStateInfo(0).IsName(clip.name);
+    }
+
     public void StartCoroutineState(IEnumerator coroutine)
     {
         StartCoroutine(coroutine);
+    }
+
+    private void SetWalk()
+    {
+        SetState(walkState);
+        walkState.SetDirectional(_input.currentTouchPosition, _input.startTouchPosition);
+    }
+    private void SetIdle()
+    {
+        SetState(idleState);
+        walkState.SetDirectional(new Vector3(0,0,0));
     }
 
 }
