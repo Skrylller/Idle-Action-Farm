@@ -9,6 +9,7 @@ public class UIController : MonoBehaviour
 
     [SerializeField] private TMP_Text _inventoryText;
     [SerializeField] private TMP_Text _moneyText;
+    [SerializeField] private VibrationObject _moneyVibration;
 
     [SerializeField] private Transform _moneyTarget;
     public Transform moneyTarget { get { return _moneyTarget; } }
@@ -27,6 +28,11 @@ public class UIController : MonoBehaviour
     public void TextUpdate()
     {
         _inventoryText.text = $"{_inventory.cultureCount}/{_inventory.inventorySize}";
-        _moneyText.text = $"{_inventory.money}";
+
+        if(_moneyText.text != $"{_inventory.money}")
+        {
+            _moneyText.text = $"{_inventory.money}";
+            _moneyVibration.Vibration();
+        }
     }
 }
